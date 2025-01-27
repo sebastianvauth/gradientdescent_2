@@ -148,20 +148,10 @@
             margin-top: 10px;
             margin-bottom: 8px;
         }
-        .visual-aid {
-          text-align: center;
-          margin-top: 20px;
-        }
-        .visual-aid-description {
-          text-align: center;
-          margin-top: 10px;
-          font-style: italic;
-          color: #555;
-        }
-        .mathematical-expression {
-          font-size: 1.2em;
-          margin: 20px 0;
-          text-align: center;
+        .math-expression {
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-align: center;
         }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -169,28 +159,36 @@
 </head>
 <body>
     <section id="section1">
+        <h1>The Mechanics of Gradient Descent: A Step-by-Step Journey</h1>
         <div class="image-placeholder">
             <img src="/placeholder.svg?height=300&width=600" alt="A hiker starting their descent down a mountain path, equipped with a compass and map, symbolizing the beginning of our journey into the mechanics of gradient descent.">
         </div>
-        <h1>The Mechanics of Gradient Descent: A Step-by-Step Journey</h1>
         <p>Welcome back, adventurers! In the last lesson, we introduced the concept of Gradient Descent as a clever way to navigate the complex landscape of a cost function. Now, it's time to roll up our sleeves and understand the inner workings of this powerful algorithm. Get ready to explore the mechanics of Gradient Descent, step-by-step!</p>
         <div class="continue-button" onclick="showNextSection(2)">Continue</div>
     </section>
 
     <section id="section2">
+        <h2>The Iterative Algorithm: A Hiker's Guide</h2>
         <p>Imagine our hiker again, carefully making their way down the mountain. They don't teleport to the bottom; they take one step at a time, guided by the slope of the terrain. Gradient Descent works in a similar iterative fashion.</p>
-        <div class="visual-aid">
-          <img src="/placeholder.svg?height=300&width=600" alt="An animation showing a hiker descending a mountain, one step at a time. Each step is marked with an arrow indicating the direction of the steepest descent. The path is traced on the mountain, showing the gradual progress towards the bottom. The animation highlights the iterative nature of the process.">
-          <div class="visual-aid-description">Like a hiker taking careful steps, Gradient Descent iteratively approaches the minimum of the cost function.</div>
+        <div class="interactive-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="An animation showing a hiker descending a mountain, one step at a time. Each step is marked with an arrow indicating the direction of the steepest descent. The path is traced on the mountain, showing the gradual progress towards the bottom.">
+            <p>Like a hiker taking careful steps, Gradient Descent iteratively approaches the minimum of the cost function.</p>
         </div>
-        <p>Here's the core idea broken down into simple steps:<br>1. <strong>Start with a Guess:</strong> We begin with an initial guess for our model parameters. This is like our hiker starting at a random point on the mountain.<br>2. <strong>Calculate the Gradient:</strong> We calculate the gradient of the cost function at that initial point. The gradient is like the slope of the mountain – it tells us which direction is downhill and how steep that slope is.<br>3. <strong>Take a Step:</strong> We update our parameters by taking a step in the <em>opposite</em> direction of the gradient. This is like moving downhill, towards lower cost.<br>4. <strong>Repeat:</strong> We repeat steps 2 and 3, iteratively refining our parameters until we reach the bottom (the minimum of the cost function) or until we've taken a predetermined number of steps.</p>
+        <p>Here's the core idea broken down into simple steps:</p>
+        <ol>
+            <li><strong>Start with a Guess:</strong> We begin with an initial guess for our model parameters. This is like our hiker starting at a random point on the mountain.</li>
+            <li><strong>Calculate the Gradient:</strong> We calculate the gradient of the cost function at that initial point. The gradient is like the slope of the mountain – it tells us which direction is downhill and how steep that slope is.</li>
+            <li><strong>Take a Step:</strong> We update our parameters by taking a step in the <em>opposite</em> direction of the gradient. This is like moving downhill, towards lower cost.</li>
+            <li><strong>Repeat:</strong> We repeat steps 2 and 3, iteratively refining our parameters until we reach the bottom (the minimum of the cost function) or until we've taken a predetermined number of steps.</li>
+        </ol>
         <div class="continue-button" onclick="showNextSection(3)">Continue</div>
     </section>
 
     <section id="section3">
+        <h2>The Role of the Learning Rate</h2>
         <p>Now, how big of a step should our hiker take? That's where the <strong>learning rate</strong> comes in. It's a crucial parameter that determines the size of the steps we take in each iteration.</p>
         <div class="interactive-placeholder">
-            <img src="/placeholder.svg?height=300&width=600" alt="An interactive simulation showing a hiker descending a mountain. A slider controls the 'stride length' (learning rate). With a small stride length, the hiker takes tiny steps, making slow but steady progress. With a large stride length, the hiker takes giant leaps, potentially overshooting the minimum or bouncing around erratically. Users can adjust the slider and observe the effect on the hiker's path and convergence speed.">
+            <img src="/placeholder.svg?height=300&width=600" alt="An interactive simulation showing a hiker descending a mountain. A slider controls the 'stride length' (learning rate).">
             <p>Adjust the slider to change the learning rate (stride length). Observe how it affects the hiker's path and how quickly they reach the bottom.</p>
         </div>
         <p>Think of the learning rate as the hiker's stride length. Too big, and they might overshoot the bottom, jumping from one side of the valley to the other, never quite settling down. Too small, and it'll take them forever to get there, making the process slow and inefficient. Finding the right learning rate is key to a smooth and efficient descent.</p>
@@ -198,12 +196,12 @@
     </section>
 
     <section id="section4">
+        <h2>The Math Behind the Magic: The Iterative Formula</h2>
         <p>Let's translate our hiker's journey into the language of mathematics. Here's the core formula that drives Gradient Descent:</p>
-        <div class="mathematical-expression">
-            $$ \beta = \beta - \alpha\nabla_{\beta}C(\beta) $$
+        <div class="math-expression">
+            \[ \beta = \beta - \alpha\nabla_\beta C(\beta) \]
         </div>
-        
-        <p>Let's break down what each part of this equation means:</p>
+        <p>Let's break down this formula:</p>
         <ul>
             <li><strong>β:</strong> Represents the vector of model parameters we're trying to optimize. Think of it as the hiker's current position on the mountain.</li>
             <li><strong>α:</strong> This is the learning rate, a small positive number that controls the step size. It's the hiker's stride length.</li>
@@ -214,55 +212,62 @@
     </section>
 
     <section id="section5">
-        <p>Let's walk through a simple example to see the formula in action. Imagine our cost function is a simple parabola: \( C(\beta) = \beta^2 \).</p>
-        <div class="visual-aid">
-          <img src="/placeholder.svg?height=300&width=600" alt="A 2D plot showing the parabola `C(β) = β²`. A red dot represents the current value of β. A blue arrow shows the gradient at that point, and a green arrow shows the update step. The plot dynamically updates as the calculation progresses through each iteration.">
-          <div class="visual-aid-description">Visualizing Gradient Descent on a simple parabolic cost function.</div>
+        <h2>A Simple Example: Descending a Parabola</h2>
+        <p>Let's walk through a simple example to see the formula in action. Imagine our cost function is a simple parabola: C(β) = β².</p>
+        <div class="interactive-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="A 2D plot showing the parabola C(β) = β². A red dot represents the current value of β. A blue arrow shows the gradient at that point, and a green arrow shows the update step.">
+            <p>Visualizing Gradient Descent on a simple parabolic cost function.</p>
         </div>
-        
-        <p>Our cost function is</p>
-        <p>$$ C(\beta) = \beta^2 $$</p>
-        <p>The gradient of the cost function is</p>
-        <p>$$ \nabla_{\beta}C(\beta) = 2\beta $$</p>
-        <p>Let's say our initial guess is β = 3, and our learning rate is α = 0.1. For the first iteration:</p>
-        <p>$$ \beta = 3 - 0.1 * (2 * 3) = 3 - 0.6 = 2.4 $$</p>
-        <p>We've moved from β = 3 to β = 2.4. For the second iteration:</p>
-        <p>$$ \beta = 2.4 - 0.1 * (2 * 2.4) = 2.4 - 0.48 = 1.92 $$</p>
-        <p>And so on... We keep updating β, getting closer to the minimum of the parabola (which is at β = 0).</p>
+        <p>Let's go through the steps:</p>
+        <ol>
+            <li>Our cost function is: $$ C(\beta) = \beta^2 $$</li>
+            <li>The gradient of the cost function is: $$ \nabla_\beta C(\beta) = 2\beta $$</li>
+            <li>Let's say our initial guess is β = 3, and our learning rate is α = 0.1. For the first iteration:
+                \[ \beta = 3 - 0.1 * (2 * 3) = 3 - 0.6 = 2.4 \]
+            </li>
+            <li>We've moved from β = 3 to β = 2.4. For the second iteration:
+                \[ \beta = 2.4 - 0.1 * (2 * 2.4) = 2.4 - 0.48 = 1.92 \]
+            </li>
+            <li>And so on... We keep updating β, getting closer to the minimum of the parabola (which is at β = 0).</li>
+        </ol>
         <p>With each iteration, we're taking a step closer to the minimum of the parabola. That's Gradient Descent in action!</p>
         <div class="continue-button" onclick="showNextSection(6)">Continue</div>
     </section>
 
     <section id="section6">
+        <h2>Stop and Think</h2>
         <p>Let's pause for a moment and ponder some key questions:</p>
         <div class="stop-and-think">
             <h3>Stop and Think</h3>
             <h4>What would happen if we used a negative learning rate? Where would our hiker end up?</h4>
-            <p>Hint: Think about the direction of the update step.</p>
-            <button class="reveal-button" onclick="revealAnswer('stop-and-think-1')">Reveal</button>
-            <p id="stop-and-think-1" style="display: none;">If we used a negative learning rate, the update step would be in the same direction as the gradient, meaning we'd be moving uphill instead of downhill! Our hiker would end up climbing the mountain, getting further away from the minimum. This highlights why the learning rate needs to be positive for Gradient Descent to work correctly.</p>
+            <p><em>Hint: Think about the direction of the update step.</em></p>
+            <button class="reveal-button" onclick="revealAnswer('stop-and-think-1')">Reveal Answer</button>
+            <p id="stop-and-think-1" style="display: none;">If we used a negative learning rate, our hiker would move in the opposite direction - uphill instead of downhill! This would cause the algorithm to maximize the cost function instead of minimizing it, leading our hiker to the top of the mountain rather than the bottom of the valley.</p>
+        </div>
+        <div class="stop-and-think">
+            <h3>Stop and Think</h3>
             <h4>How does the shape of the cost function affect the performance of Gradient Descent?</h4>
-            <p>Hint: Consider scenarios with very steep slopes or very flat regions.</p>
-            <button class="reveal-button" onclick="revealAnswer('stop-and-think-2')">Reveal</button>
-            <p id="stop-and-think-2" style="display: none;">The shape of the cost function significantly impacts Gradient Descent's performance. If the cost function has very steep slopes, the gradient will be large, leading to large update steps. This can cause the algorithm to oscillate or even diverge if the learning rate is too high. On the other hand, if the cost function has very flat regions, the gradient will be small, leading to small update steps. This can make the algorithm very slow to converge, especially if it starts in a flat region far from the minimum. Additionally, if the cost function has multiple local minima, Gradient Descent might get stuck in one of them, instead of finding the global minimum. The shape of the cost function is therefore a crucial factor to consider when applying Gradient Descent.</p>
+            <p><em>Hint: Consider scenarios with very steep slopes or very flat regions.</em></p>
+            <button class="reveal-button" onclick="revealAnswer('stop-and-think-2')">Reveal Answer</button>
+            <p id="stop-and-think-2" style="display: none;">The shape of the cost function greatly affects Gradient Descent's performance. In regions with steep slopes, the gradient is large, potentially causing large steps that might overshoot the minimum. In very flat regions, the gradient is small, leading to tiny steps and slow progress. Ideally, we want a well-behaved cost function with a clear, smooth path to the global minimum.</p>
         </div>
         <div class="continue-button" onclick="showNextSection(7)">Continue</div>
     </section>
 
     <section id="section7">
-        <p>Here are some common questions that might be popping into your head:</p>
+        <h2>Frequently Asked Questions</h2>
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
             <h4>How do we know when to stop the iterations?</h4>
             <p>Great question! We typically stop when either the gradient becomes very small (meaning we're close to the minimum and not changing much) or we've reached a maximum number of iterations. It's like our hiker deciding they're close enough to the bottom or they've walked for long enough.</p>
             <h4>What is a good value for the learning rate?</h4>
-            <p>There's no magic number, unfortunately. It often requires experimentation and tuning. A good starting point is to try a few different values, like 0.1, 0.01, or 0.001, and see which one works best for your specific problem. It is a hyperparameter.</p>
+            <p>There's no magic number, unfortunately. It often requires experimentation and tuning. A good starting point is to try a few different values, like 0.1, 0.01, or 0.001, and see which one works best for your specific problem. It is a hyperparameter that often requires adjustment based on the characteristics of your data and model.
         </div>
         <div class="continue-button" onclick="showNextSection(8)">Continue</div>
     </section>
 
     <section id="section8">
-        <p>Let's reinforce some important terms:</p>
+        <h2>Build Your Vocabulary</h2>
         <div class="vocab-section">
             <h3>Build Your Vocab</h3>
             <h4 class="vocab-term">Gradient</h4>
@@ -274,24 +279,21 @@
     </section>
 
     <section id="section9">
-        <p>Time to put your understanding to the test with a quick quiz!</p>
+        <h2>Test Your Knowledge</h2>
         <div class="test-your-knowledge">
             <h3>Test Your Knowledge</h3>
-            <h4>Given the cost function \( C(\beta) = 0.5 * \beta^2 \), an initial value of \( \beta = 4 \), and a learning rate of \( \alpha = 0.2 \), what will be the value of \( \beta \) after one iteration of Gradient Descent?</h4>
-            <button class="reveal-button" onclick="revealAnswer('test-your-knowledge-1')">Show Options</button>
+            <h4>Given the cost function C(β) = 0.5 * β², an initial value of β = 4, and a learning rate of α = 0.2, what will be the value of β after one iteration of Gradient Descent?</h4>
+            <button class="reveal-button" onclick="revealAnswer('test-your-knowledge-1')">Reveal Answer</button>
             <div id="test-your-knowledge-1" style="display: none;">
-                <p><input type="radio" name="q1" value="a"> 3.2</p>
-                <p><input type="radio" name="q1" value="b"> 2.4</p>
-                <p><input type="radio" name="q1" value="c"> 3.6</p>
-                <p><input type="radio" name="q1" value="d"> 4.8</p>
-                <button class="check-button" onclick="checkAnswer('q1', 'c')">Check Answer</button>
-                <p id="q1-feedback" style="display: none;"></p>
+                <p><strong>Answer:</strong> 3.6</p>
+                <p><strong>Explanation:</strong> The gradient is ∇<sub>β</sub>C(β) = β, so the update is β = 4 - 0.2 * 4 = 3.6.</p>
             </div>
         </div>
         <div class="continue-button" onclick="showNextSection(10)">Continue</div>
     </section>
 
     <section id="section10">
+        <h2>Wrapping Up Lesson 2</h2>
         <p>Fantastic work! You've now grasped the core mechanics of Gradient Descent. You understand the iterative process, the role of the learning rate, and the mathematical formula that drives it all. You've even seen a simple example in action. In the next lesson, we'll apply this knowledge to a real-world machine learning problem: Linear Regression. Get ready to see Gradient Descent in its full glory!</p>
         <div class="image-placeholder">
             <img src="/placeholder.svg?height=300&width=600" alt="A hiker successfully reaching the bottom of a valley, looking back at the path they've taken, symbolizing the successful completion of a Gradient Descent iteration and the progress made.">
@@ -325,26 +327,6 @@
             
             revealText.style.display = "block";
             revealButton.style.display = "none";
-        }
-
-        function checkAnswer(questionId, correctAnswer) {
-            const selectedAnswer = document.querySelector(`input[name="${questionId}"]:checked`);
-            const feedbackElement = document.getElementById(`${questionId}-feedback`);
-            
-            if (selectedAnswer) {
-                if (selectedAnswer.value === correctAnswer) {
-                    feedbackElement.textContent = "Correct! Well done!";
-                    feedbackElement.style.color = "green";
-                } else {
-                    feedbackElement.textContent = "Incorrect. Try again!";
-                    feedbackElement.style.color = "red";
-                }
-            } else {
-                feedbackElement.textContent = "Please select an answer.";
-                feedbackElement.style.color = "blue";
-            }
-            
-            feedbackElement.style.display = "block";
         }
     </script>
 </body>

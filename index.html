@@ -159,11 +159,12 @@
 </head>
 <body>
     <section id="section1">
-        <h1>The Mechanics of Gradient Descent: A Step-by-Step Journey</h1>
-        <div class="image-placeholder">
+<div class="image-placeholder">
             <img src="/placeholder.svg?height=300&width=600" alt="A hiker starting their descent down a mountain path, equipped with a compass and map, symbolizing the beginning of our journey into the mechanics of gradient descent.">
         </div>
-        <p>Welcome back, adventurers! In the last lesson, we introduced the concept of Gradient Descent as a clever way to navigate the complex landscape of a cost function. Now, it's time to roll up our sleeves and understand the inner workings of this powerful algorithm. Get ready to explore the mechanics of Gradient Descent, step-by-step!</p>
+        <h1>The Mechanics of Gradient Descent: A Step-by-Step Journey</h1>
+        
+        <p>In the last lesson, we introduced the concept of Gradient Descent as a clever way to navigate the complex landscape of a cost function. Now, it's time to roll up our sleeves and understand the inner workings of this powerful algorithm. Get ready to explore the mechanics of Gradient Descent, step-by-step!</p>
         <div class="continue-button" onclick="showNextSection(2)">Continue</div>
     </section>
 
@@ -203,9 +204,9 @@
         </div>
         <p>Let's break down this formula:</p>
         <ul>
-            <li><strong>β:</strong> Represents the vector of model parameters we're trying to optimize. Think of it as the hiker's current position on the mountain.</li>
-            <li><strong>α:</strong> This is the learning rate, a small positive number that controls the step size. It's the hiker's stride length.</li>
-            <li><strong>∇<sub>β</sub>C(β):</strong> This is the gradient of the cost function C(β) with respect to the parameters β. It's a vector that points in the direction of the steepest increase of the cost function – the uphill direction. By taking the negative of the gradient, we're moving downhill.</li>
+            <li>\( \beta \) - Represents the vector of model parameters we're trying to optimize. Think of it as the hiker's current position on the mountain.</li>
+            <li>\( \alpha \) - This is the learning rate, a small positive number that controls the step size. It's the hiker's stride length.</li>
+            <li>\( \nabla_\beta C(\beta) \) - This is the gradient of the cost function C(β) with respect to the parameters β. It's a vector that points in the direction of the steepest increase of the cost function – the uphill direction. By taking the negative of the gradient, we're moving downhill.</li>
         </ul>
         <p>In simple terms, this formula says: 'Update the parameters by moving them a little bit in the direction opposite to the gradient, scaled by the learning rate.'</p>
         <div class="continue-button" onclick="showNextSection(5)">Continue</div>
@@ -213,49 +214,47 @@
 
     <section id="section5">
         <h2>A Simple Example: Descending a Parabola</h2>
-        <p>Let's walk through a simple example to see the formula in action. Imagine our cost function is a simple parabola: C(β) = β².</p>
+        <p>Let's walk through a simple example to see the formula in action. Imagine our cost function is a simple parabola: \( C(\beta) = \beta^2 \).</p>
         <div class="interactive-placeholder">
             <img src="/placeholder.svg?height=300&width=600" alt="A 2D plot showing the parabola C(β) = β². A red dot represents the current value of β. A blue arrow shows the gradient at that point, and a green arrow shows the update step.">
             <p>Visualizing Gradient Descent on a simple parabolic cost function.</p>
         </div>
         <p>Let's go through the steps:</p>
         <ol>
-            <li>Our cost function is: $$ C(\beta) = \beta^2 $$</li>
-            <li>The gradient of the cost function is: $$ \nabla_\beta C(\beta) = 2\beta $$</li>
-            <li>Let's say our initial guess is β = 3, and our learning rate is α = 0.1. For the first iteration:
+            <li>Our cost function is: \( C(\beta) = \beta^2 \)</li>
+            <li>The gradient of the cost function is: \( \nabla_\beta C(\beta) = 2\beta \)</li>
+            <li>Let's say our initial guess is \( \beta = 3 \), and our learning rate is \( \alpha = 0.1 \). For the first iteration:
                 \[ \beta = 3 - 0.1 * (2 * 3) = 3 - 0.6 = 2.4 \]
             </li>
-            <li>We've moved from β = 3 to β = 2.4. For the second iteration:
+            <li>We've moved from \( \beta = 3 \) to \( \beta = 2.4 \). For the second iteration:
                 \[ \beta = 2.4 - 0.1 * (2 * 2.4) = 2.4 - 0.48 = 1.92 \]
             </li>
-            <li>And so on... We keep updating β, getting closer to the minimum of the parabola (which is at β = 0).</li>
+            <li>And so on... We keep updating \( \beta \), getting closer to the minimum of the parabola (which is at \( \beta = 0 \)).</li>
         </ol>
         <p>With each iteration, we're taking a step closer to the minimum of the parabola. That's Gradient Descent in action!</p>
         <div class="continue-button" onclick="showNextSection(6)">Continue</div>
     </section>
 
     <section id="section6">
-        <h2>Stop and Think</h2>
         <p>Let's pause for a moment and ponder some key questions:</p>
         <div class="stop-and-think">
             <h3>Stop and Think</h3>
             <h4>What would happen if we used a negative learning rate? Where would our hiker end up?</h4>
             <p><em>Hint: Think about the direction of the update step.</em></p>
-            <button class="reveal-button" onclick="revealAnswer('stop-and-think-1')">Reveal Answer</button>
+            <button class="reveal-button" onclick="revealAnswer('stop-and-think-1')">Reveal</button>
             <p id="stop-and-think-1" style="display: none;">If we used a negative learning rate, our hiker would move in the opposite direction - uphill instead of downhill! This would cause the algorithm to maximize the cost function instead of minimizing it, leading our hiker to the top of the mountain rather than the bottom of the valley.</p>
         </div>
         <div class="stop-and-think">
             <h3>Stop and Think</h3>
             <h4>How does the shape of the cost function affect the performance of Gradient Descent?</h4>
             <p><em>Hint: Consider scenarios with very steep slopes or very flat regions.</em></p>
-            <button class="reveal-button" onclick="revealAnswer('stop-and-think-2')">Reveal Answer</button>
+            <button class="reveal-button" onclick="revealAnswer('stop-and-think-2')">Reveal</button>
             <p id="stop-and-think-2" style="display: none;">The shape of the cost function greatly affects Gradient Descent's performance. In regions with steep slopes, the gradient is large, potentially causing large steps that might overshoot the minimum. In very flat regions, the gradient is small, leading to tiny steps and slow progress. Ideally, we want a well-behaved cost function with a clear, smooth path to the global minimum.</p>
         </div>
         <div class="continue-button" onclick="showNextSection(7)">Continue</div>
     </section>
 
     <section id="section7">
-        <h2>Frequently Asked Questions</h2>
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
             <h4>How do we know when to stop the iterations?</h4>
@@ -267,7 +266,6 @@
     </section>
 
     <section id="section8">
-        <h2>Build Your Vocabulary</h2>
         <div class="vocab-section">
             <h3>Build Your Vocab</h3>
             <h4 class="vocab-term">Gradient</h4>
@@ -278,27 +276,9 @@
         <div class="continue-button" onclick="showNextSection(9)">Continue</div>
     </section>
 
-    <section id="section9">
-        <h2>Test Your Knowledge</h2>
-        <div class="test-your-knowledge">
-            <h3>Test Your Knowledge</h3>
-            <h4>Given the cost function C(β) = 0.5 * β², an initial value of β = 4, and a learning rate of α = 0.2, what will be the value of β after one iteration of Gradient Descent?</h4>
-            <button class="reveal-button" onclick="revealAnswer('test-your-knowledge-1')">Reveal Answer</button>
-            <div id="test-your-knowledge-1" style="display: none;">
-                <p><strong>Answer:</strong> 3.6</p>
-                <p><strong>Explanation:</strong> The gradient is ∇<sub>β</sub>C(β) = β, so the update is β = 4 - 0.2 * 4 = 3.6.</p>
-            </div>
-        </div>
-        <div class="continue-button" onclick="showNextSection(10)">Continue</div>
-    </section>
-
-    <section id="section10">
-        <h2>Wrapping Up Lesson 2</h2>
+        <section id="section9">
         <p>Fantastic work! You've now grasped the core mechanics of Gradient Descent. You understand the iterative process, the role of the learning rate, and the mathematical formula that drives it all. You've even seen a simple example in action. In the next lesson, we'll apply this knowledge to a real-world machine learning problem: Linear Regression. Get ready to see Gradient Descent in its full glory!</p>
-        <div class="image-placeholder">
-            <img src="/placeholder.svg?height=300&width=600" alt="A hiker successfully reaching the bottom of a valley, looking back at the path they've taken, symbolizing the successful completion of a Gradient Descent iteration and the progress made.">
-        </div>
-    </section>
+            </section>
 
     <script>
         // Show the first section initially

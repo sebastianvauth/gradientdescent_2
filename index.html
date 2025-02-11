@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Mechanics of Gradient Descent</title>
+    <title>Understanding the Cost Function and Gradients</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -148,137 +148,208 @@
             margin-top: 10px;
             margin-bottom: 8px;
         }
-        .math-expression {
-            font-size: 1.2em;
-            margin: 20px 0;
-            text-align: center;
-        }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <section id="section1">
-<div class="image-placeholder">
-            <img src="/placeholder.svg?height=300&width=600" alt="A hiker starting their descent down a mountain path, equipped with a compass and map, symbolizing the beginning of our journey into the mechanics of gradient descent.">
+        <h1>Understanding the Cost Function and Gradients</h1>
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Image showing a magnifying glass over mathematical equations, specifically focusing on derivative symbols, symbolizing the deeper dive into mathematical details of gradient descent.">
         </div>
-        <h1>The Mechanics of Gradient Descent: A Step-by-Step Journey</h1>
-        
-        <p>In the last lesson, we introduced the concept of Gradient Descent as a clever way to navigate the complex landscape of a cost function. Now, it's time to roll up our sleeves and understand the inner workings of this powerful algorithm. Get ready to explore the mechanics of Gradient Descent, step-by-step!</p>
+        <p>Welcome back! 👋 In our first lesson, we conquered the high-level idea of Gradient Descent – the smart hiker going downhill. Now, it's time to zoom in and understand two crucial elements that make Gradient Descent work: the <strong>Cost Function</strong> and <strong>Gradients</strong>. Think of these as the map and compass for our hiker. In this lesson, we'll get a bit more mathematical, but don't worry, we'll take it step by step. Let's get started!</p>
         <div class="continue-button" onclick="showNextSection(2)">Continue</div>
     </section>
 
     <section id="section2">
-        <h2>The Iterative Algorithm: A Hiker's Guide</h2>
-        <p>Imagine our hiker again, carefully making their way down the mountain. They don't teleport to the bottom; they take one step at a time, guided by the slope of the terrain. Gradient Descent works in a similar iterative fashion.</p>
-        <div class="interactive-placeholder">
-            <img src="/placeholder.svg?height=300&width=600" alt="An animation showing a hiker descending a mountain, one step at a time. Each step is marked with an arrow indicating the direction of the steepest descent. The path is traced on the mountain, showing the gradual progress towards the bottom.">
-            <p>Like a hiker taking careful steps, Gradient Descent iteratively approaches the minimum of the cost function.</p>
-        </div>
-        <p>Here's the core idea broken down into simple steps:</p>
-        <ol>
-            <li><strong>Start with a Guess:</strong> We begin with an initial guess for our model parameters. This is like our hiker starting at a random point on the mountain.</li>
-            <li><strong>Calculate the Gradient:</strong> We calculate the gradient of the cost function at that initial point. The gradient is like the slope of the mountain – it tells us which direction is downhill and how steep that slope is.</li>
-            <li><strong>Take a Step:</strong> We update our parameters by taking a step in the <em>opposite</em> direction of the gradient. This is like moving downhill, towards lower cost.</li>
-            <li><strong>Repeat:</strong> We repeat steps 2 and 3, iteratively refining our parameters until we reach the bottom (the minimum of the cost function) or until we've taken a predetermined number of steps.</li>
-        </ol>
+        <h2>The Cost Function: Measuring Error</h2>
+        <p>Remember, the <strong>cost function</strong> is what we want to minimize. It tells us 'how bad' our model's predictions are. For today, let's focus on a common type of Machine Learning problem: <strong>Linear Regression</strong>.</p>
         <div class="continue-button" onclick="showNextSection(3)">Continue</div>
     </section>
 
     <section id="section3">
-        <h2>The Role of the Learning Rate</h2>
-        <p>Now, how big of a step should our hiker take? That's where the <strong>learning rate</strong> comes in. It's a crucial parameter that determines the size of the steps we take in each iteration.</p>
-        <div class="interactive-placeholder">
-            <img src="/placeholder.svg?height=300&width=600" alt="An interactive simulation showing a hiker descending a mountain. A slider controls the 'stride length' (learning rate).">
-            <p>Adjust the slider to change the learning rate (stride length). Observe how it affects the hiker's path and how quickly they reach the bottom.</p>
+        <p>In Linear Regression, we want to find a line that best fits our data points. Imagine you have data points scattered on a graph, and you want to draw a straight line through them that's as close as possible to all the points.</p>
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Image showing a scatter plot of data points with a straight line drawn through them, but not perfectly fitting all points, illustrating the concept of linear regression and error.">
         </div>
-        <p>Think of the learning rate as the hiker's stride length. Too big, and they might overshoot the bottom, jumping from one side of the valley to the other, never quite settling down. Too small, and it'll take them forever to get there, making the process slow and inefficient. Finding the right learning rate is key to a smooth and efficient descent.</p>
         <div class="continue-button" onclick="showNextSection(4)">Continue</div>
     </section>
 
     <section id="section4">
-        <h2>The Math Behind the Magic: The Iterative Formula</h2>
-        <p>Let's translate our hiker's journey into the language of mathematics. Here's the core formula that drives Gradient Descent:</p>
-        <div class="math-expression">
-            \[ \beta = \beta - \alpha\nabla_\beta C(\beta) \]
-        </div>
-        <p>Let's break down this formula:</p>
-        <ul>
-            <li>\( \beta \) - Represents the vector of model parameters we're trying to optimize. Think of it as the hiker's current position on the mountain.</li>
-            <li>\( \alpha \) - This is the learning rate, a small positive number that controls the step size. It's the hiker's stride length.</li>
-            <li>\( \nabla_\beta C(\beta) \) - This is the gradient of the cost function C(β) with respect to the parameters β. It's a vector that points in the direction of the steepest increase of the cost function – the uphill direction. By taking the negative of the gradient, we're moving downhill.</li>
-        </ul>
-        <p>In simple terms, this formula says: 'Update the parameters by moving them a little bit in the direction opposite to the gradient, scaled by the learning rate.'</p>
+        <p>To measure 'how close' the line is, we use the <strong>Mean Squared Error (MSE)</strong> cost function. MSE calculates the average of the squared differences between the actual values (our data points) and the values predicted by our line.</p>
         <div class="continue-button" onclick="showNextSection(5)">Continue</div>
     </section>
 
     <section id="section5">
-        <h2>A Simple Example: Descending a Parabola</h2>
-        <p>Let's walk through a simple example to see the formula in action. Imagine our cost function is a simple parabola: \( C(\beta) = \beta^2 \).</p>
-        <div class="interactive-placeholder">
-            <img src="/placeholder.svg?height=300&width=600" alt="A 2D plot showing the parabola C(β) = β². A red dot represents the current value of β. A blue arrow shows the gradient at that point, and a green arrow shows the update step.">
-            <p>Visualizing Gradient Descent on a simple parabolic cost function.</p>
-        </div>
-        <p>Let's go through the steps:</p>
-        <ol>
-            <li>Our cost function is: \( C(\beta) = \beta^2 \)</li>
-            <li>The gradient of the cost function is: \( \nabla_\beta C(\beta) = 2\beta \)</li>
-            <li>Let's say our initial guess is \( \beta = 3 \), and our learning rate is \( \alpha = 0.1 \). For the first iteration:
-                \[ \beta = 3 - 0.1 * (2 * 3) = 3 - 0.6 = 2.4 \]
-            </li>
-            <li>We've moved from \( \beta = 3 \) to \( \beta = 2.4 \). For the second iteration:
-                \[ \beta = 2.4 - 0.1 * (2 * 2.4) = 2.4 - 0.48 = 1.92 \]
-            </li>
-            <li>And so on... We keep updating \( \beta \), getting closer to the minimum of the parabola (which is at \( \beta = 0 \)).</li>
-        </ol>
-        <p>With each iteration, we're taking a step closer to the minimum of the parabola. That's Gradient Descent in action!</p>
+        <p>Let's say we have $$n$$ data points, and for each point $$i$$, the actual value is $$y^{(i)}$$, and our linear model predicts $$f_{\beta}(x^{(i)})$$. Here, $$x^{(i)}$$ represents the input features, and $$\beta$$ represents the parameters of our linear model (like the slope and intercept of the line).</p>
         <div class="continue-button" onclick="showNextSection(6)">Continue</div>
     </section>
 
     <section id="section6">
-        <p>Let's pause for a moment and ponder some key questions:</p>
-        <div class="stop-and-think">
-            <h3>Stop and Think</h3>
-            <h4>What would happen if we used a negative learning rate? Where would our hiker end up?</h4>
-            <p><em>Hint: Think about the direction of the update step.</em></p>
-            <button class="reveal-button" onclick="revealAnswer('stop-and-think-1')">Reveal</button>
-            <p id="stop-and-think-1" style="display: none;">If we used a negative learning rate, our hiker would move in the opposite direction - uphill instead of downhill! This would cause the algorithm to maximize the cost function instead of minimizing it, leading our hiker to the top of the mountain rather than the bottom of the valley.</p>
-        </div>
-        <div class="stop-and-think">
-            <h3>Stop and Think</h3>
-            <h4>How does the shape of the cost function affect the performance of Gradient Descent?</h4>
-            <p><em>Hint: Consider scenarios with very steep slopes or very flat regions.</em></p>
-            <button class="reveal-button" onclick="revealAnswer('stop-and-think-2')">Reveal</button>
-            <p id="stop-and-think-2" style="display: none;">The shape of the cost function greatly affects Gradient Descent's performance. In regions with steep slopes, the gradient is large, potentially causing large steps that might overshoot the minimum. In very flat regions, the gradient is small, leading to tiny steps and slow progress. Ideally, we want a well-behaved cost function with a clear, smooth path to the global minimum.</p>
-        </div>
+        <p>The <strong>Mean Squared Error (MSE)</strong> cost function, often denoted as $$C(\beta)$$, is defined as:</p>
+        <p>\[C(\beta) = \frac{1}{2n} \sum_{i=1}^{n} (y^{(i)} - f_{\beta}(x^{(i)}))^2\]</p>
+        <p>Let's break this down:</p>
         <div class="continue-button" onclick="showNextSection(7)">Continue</div>
     </section>
 
     <section id="section7">
-        <div class="faq-section">
-            <h3>Frequently Asked Questions</h3>
-            <h4>How do we know when to stop the iterations?</h4>
-            <p>Great question! We typically stop when either the gradient becomes very small (meaning we're close to the minimum and not changing much) or we've reached a maximum number of iterations. It's like our hiker deciding they're close enough to the bottom or they've walked for long enough.</p>
-            <h4>What is a good value for the learning rate?</h4>
-            <p>There's no magic number, unfortunately. It often requires experimentation and tuning. A good starting point is to try a few different values, like 0.1, 0.01, or 0.001, and see which one works best for your specific problem. It is a hyperparameter that often requires adjustment based on the characteristics of your data and model.
+        <ul>
+            <li>$$\sum_{i=1}^{n}$$: This is the summation symbol, meaning we sum up the following term for all data points from $$i=1$$ to $$n$$.</li>
+            <li>$$(y^{(i)} - f_{\beta}(x^{(i)}))^2$$: This is the <strong>squared error</strong> for the $$i$$-th data point. It's the difference between the actual value $$y^{(i)}$$ and our model's prediction $$f_{\beta}(x^{(i)})$$, squared. We square it to ensure errors are always positive and to penalize larger errors more heavily.</li>
+            <li>$$\frac{1}{2n}$$: We divide by $$2n$$ to average the squared errors over all data points. The factor of 2 is often included for mathematical convenience when we calculate gradients later.</li>
+        </ul>
+        <p>So, the MSE cost function gives us a single number that represents the overall 'mismatch' between our linear model and the actual data. Our goal in Gradient Descent is to adjust the parameters $$\beta$$ of our linear model to <em>minimize</em> this MSE cost function.</p>
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Mean Squared Error (MSE)</h4>
+            <p>A cost function that measures the average of the squared differences between predicted and actual values. Commonly used in regression problems.</p>
         </div>
+        <p>The lower the MSE, the better our linear model fits the data!</p>
         <div class="continue-button" onclick="showNextSection(8)">Continue</div>
     </section>
 
     <section id="section8">
-        <div class="vocab-section">
-            <h3>Build Your Vocab</h3>
-            <h4 class="vocab-term">Gradient</h4>
-            <p>A vector that points in the direction of the greatest rate of increase of a function. In Gradient Descent, it's the 'slope' of the cost function, guiding us towards the minimum.</p>
-            <h4 class="vocab-term">Iteration</h4>
-            <p>A single update step in an iterative algorithm like Gradient Descent. It's one step in our hiker's journey down the mountain.</p>
-        </div>
+        <h2>Gradients: Finding the Downhill Direction</h2>
+        <p>Now, how do we find the 'downhill' direction of this MSE cost function? That's where <strong>gradients</strong> come in! Remember from Lesson 1, the gradient $$\nabla_{\beta}C(\beta)$$ points uphill. We need the <em>negative</em> gradient to go downhill.</p>
         <div class="continue-button" onclick="showNextSection(9)">Continue</div>
     </section>
 
-        <section id="section9">
-        <p>Fantastic work! You've now grasped the core mechanics of Gradient Descent. You understand the iterative process, the role of the learning rate, and the mathematical formula that drives it all. You've even seen a simple example in action. In the next lesson, we'll apply this knowledge to a real-world machine learning problem: Linear Regression. Get ready to see Gradient Descent in its full glory!</p>
-            </section>
+    <section id="section9">
+        <p>For our linear regression model, let's assume it's a simple one with two parameters: $$\beta_0$$ (the intercept) and $$\beta_1$$ (the slope for a single feature $$x$$). So, our model is: $$f_{\beta}(x) = \beta_0 + \beta_1x$$.</p>
+        <div class="continue-button" onclick="showNextSection(10)">Continue</div>
+    </section>
+
+    <section id="section10">
+        <p>To use Gradient Descent, we need to calculate the <strong>partial derivatives</strong> of the MSE cost function $$C(\beta)$$ with respect to each parameter: $$\beta_0$$ and $$\beta_1$$. These partial derivatives are the components of our gradient.</p>
+        <div class="continue-button" onclick="showNextSection(11)">Continue</div>
+    </section>
+
+    <section id="section11">
+        <p>Let's calculate the partial derivative with respect to $$\beta_0$$, denoted as $$\frac{\partial C}{\partial \beta_0}$$:</p>
+        <p>\[\frac{\partial C}{\partial \beta_0} = \frac{\partial}{\partial \beta_0} \left[ \frac{1}{2n} \sum_{i=1}^{n} (y^{(i)} - (\beta_0 + \beta_1x^{(i)}))^2 \right]\]</p>
+        <p>Using the chain rule of calculus, we get:</p>
+        <div class="continue-button" onclick="showNextSection(12)">Continue</div>
+    </section>
+
+    <section id="section12">
+        <p>\[\frac{\partial C}{\partial \beta_0} = \frac{1}{2n} \sum_{i=1}^{n} 2(y^{(i)} - (\beta_0 + \beta_1x^{(i)})) \cdot (-1)\]</p>
+        <p>Simplifying, we get:</p>
+        <div class="continue-button" onclick="showNextSection(13)">Continue</div>
+    </section>
+
+    <section id="section13">
+        <p>\[\frac{\partial C}{\partial \beta_0} = \frac{1}{n} \sum_{i=1}^{n} ((\beta_0 + \beta_1x^{(i)}) - y^{(i)}) = \frac{1}{n} \sum_{i=1}^{n} (f_{\beta}(x^{(i)}) - y^{(i)})\]</p>
+        <p>So, the gradient with respect to $$\beta_0$$ is the average of the prediction errors.</p>
+        <div class="continue-button" onclick="showNextSection(14)">Continue</div>
+    </section>
+
+    <section id="section14">
+        <p>Similarly, let's calculate the partial derivative with respect to $$\beta_1$$, denoted as $$\frac{\partial C}{\partial \beta_1}$$:</p>
+        <p>\[\frac{\partial C}{\partial \beta_1} = \frac{\partial}{\partial \beta_1} \left[ \frac{1}{2n} \sum_{i=1}^{n} (y^{(i)} - (\beta_0 + \beta_1x^{(i)}))^2 \right]\]</p>
+        <p>Using the chain rule again, we get:</p>
+        <div class="continue-button" onclick="showNextSection(15)">Continue</div>
+    </section>
+
+    <section id="section15">
+        <p>\[\frac{\partial C}{\partial \beta_1} = \frac{1}{2n} \sum_{i=1}^{n} 2(y^{(i)} - (\beta_0 + \beta_1x^{(i)})) \cdot (-x^{(i)})\]</p>
+        <p>Simplifying, we get:</p>
+        <div class="continue-button" onclick="showNextSection(16)">Continue</div>
+    </section>
+
+    <section id="section16">
+        <p>\[\frac{\partial C}{\partial \beta_1} = \frac{1}{n} \sum_{i=1}^{n} x^{(i)} ((\beta_0 + \beta_1x^{(i)}) - y^{(i)}) = \frac{1}{n} \sum_{i=1}^{n} x^{(i)} (f_{\beta}(x^{(i)}) - y^{(i)})\]</p>
+        <p>So, the gradient with respect to $$\beta_1$$ is the average of the prediction errors multiplied by the input features $$x^{(i)}$$.</p>
+        <div class="continue-button" onclick="showNextSection(17)">Continue</div>
+    </section>
+
+    <section id="section17">
+        <p>Now we have both components of our gradient: $$\nabla_{\beta}C(\beta) = \begin{bmatrix} \frac{\partial C}{\partial \beta_0} \\ \frac{\partial C}{\partial \beta_1} \end{bmatrix}$$. We can use these gradients in our Gradient Descent update rule!</p>
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Animated derivation steps for ∂C/∂β₀ and ∂C/∂β₁. Show each step of the chain rule and simplification process with clear annotations and color-coding to highlight the terms being derived.">
+        </div>
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Gradient ($$\nabla_{\beta}C(\beta)$$)</h4>
+            <p>A vector of partial derivatives of the cost function with respect to each parameter. It indicates the direction of steepest ascent.</p>
+        </div>
+        <p>These gradients are our 'compass' for stepping downhill!</p>
+        <div class="continue-button" onclick="showNextSection(18)">Continue</div>
+    </section>
+
+    <section id="section18">
+        <h2>Example Gradient Calculation</h2>
+        <p>Let's make this concrete with a tiny example. Suppose we have just one data point: $$x^{(1)} = 2$$, $$y^{(1)} = 5$$. And let's say our current parameters are $$\beta_0 = 1$$, $$\beta_1 = 1$$.</p>
+        <div class="continue-button" onclick="showNextSection(19)">Continue</div>
+    </section>
+
+    <section id="section19">
+        <p>Our linear model prediction is: $$f_{\beta}(x^{(1)}) = \beta_0 + \beta_1x^{(1)} = 1 + 1 \times 2 = 3$$.</p>
+        <div class="continue-button" onclick="showNextSection(20)">Continue</div>
+    </section>
+
+    <section id="section20">
+        <p>The prediction error is: $$f_{\beta}(x^{(1)}) - y^{(1)} = 3 - 5 = -2$$.</p>
+        <div class="continue-button" onclick="showNextSection(21)">Continue</div>
+    </section>
+
+    <section id="section21">
+        <p>Now, let's calculate the gradients:</p>
+        <div class="continue-button" onclick="showNextSection(22)">Continue</div>
+    </section>
+
+    <section id="section22">
+        <p>\[\frac{\partial C}{\partial \beta_0} = \frac{1}{1} \sum_{i=1}^{1} (f_{\beta}(x^{(i)}) - y^{(i)}) = (3 - 5) = -2\]</p>
+        <div class="continue-button" onclick="showNextSection(23)">Continue</div>
+    </section>
+
+    <section id="section23">
+        <p>\[\frac{\partial C}{\partial \beta_1} = \frac{1}{1} \sum_{i=1}^{1} x^{(i)} (f_{\beta}(x^{(i)}) - y^{(i)}) = 2 \times (3 - 5) = -4\]</p>
+        <div class="continue-button" onclick="showNextSection(24)">Continue</div>
+    </section>
+
+    <section id="section24">
+        <p>So, our gradient is $$\nabla_{\beta}C(\beta) = \begin{bmatrix} -2 \\ -4 \end{bmatrix}$$. This tells us that to <em>increase</em> the cost function the most, we should increase $$\beta_0$$ and $$\beta_1$$ in the direction of $$[-2, -4]$$. To <em>decrease</em> the cost function (which is our goal), we should move in the <em>opposite</em> direction!</p>
+        <div class="interactive-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="Interactive Gradient Calculator. Input fields for x^(1), y^(1), β₀, β₁. A 'Calculate Gradients' button. Output fields to display calculated ∂C/∂β₀ and ∂C/∂β₁. Allow students to change input values and recalculate gradients to see how they change dynamically.">
+        </div>
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Partial Derivative ($$\frac{\partial C}{\partial \beta_j}$$)</h4>
+            <p>The derivative of a multivariable function with respect to one variable, keeping others constant. In Gradient Descent, we use partial derivatives of the cost function with respect to each parameter.</p>
+        </div>
+        <p>Understanding gradients is key to making Gradient Descent work!</p>
+        <div class="continue-button" onclick="showNextSection(25)">Continue</div>
+    </section>
+
+    <section id="section25">
+        <h2>Why Squared Error?</h2>
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <h4>Why do we use squared error in MSE instead of just the absolute error $$|y - \hat{y}|$$?</h4>
+            <p>Using squared error has several advantages. Mathematically, it makes the cost function differentiable everywhere, which is essential for Gradient Descent to work smoothly. The square function also penalizes larger errors more significantly than smaller errors, which is often desirable. Furthermore, it results in a convex cost function for linear regression, guaranteeing that Gradient Descent can find the global minimum.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(26)">Continue</div>
+    </section>
+
+    <section id="section26">
+        <h2>Test Your Knowledge</h2>
+        <div class="test-your-knowledge">
+            <h3>Test Your Knowledge</h3>
+            <h4>For a linear regression problem, you've calculated the gradient of the MSE cost function with respect to $$\beta_1$$ and found it to be -3. If you are using Gradient Descent with a learning rate of $$\alpha = 0.1$$, how should you update $$\beta_1$$?</h4>
+            <button class="reveal-button" onclick="revealAnswer('test-your-knowledge-1')">Reveal Answer</button>
+            <div id="test-your-knowledge-1" style="display: none;">
+                <p><strong>Correct Answer:</strong> Increase $$\beta_1$$ by 0.3</p>
+                <p><strong>Explanation:</strong> The update rule is $$\beta_{1,new} = \beta_{1,old} - \alpha \frac{\partial C}{\partial \beta_1} = \beta_{1,old} - 0.1 \times (-3) = \beta_{1,old} + 0.3$$. So, you increase $$\beta_1$$ by 0.3.</p>
+            </div>
+        </div>
+        <div class="continue-button" onclick="showNextSection(27)">Continue</div>
+    </section>
+
+    <section id="section27">
+        <h2>Wrapping Up</h2>
+        <p>Excellent work! 🎉 You've now taken a significant step by understanding the cost function and how to calculate gradients for linear regression. These are the essential tools for making Gradient Descent work in practice. In our next lesson, we'll put it all together and see the complete Gradient Descent algorithm in action. Get ready to implement your own optimization process!</p>
+    </section>
 
     <script>
         // Show the first section initially
